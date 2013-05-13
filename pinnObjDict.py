@@ -3,6 +3,15 @@ import pinnObjList
 # ------------------------------------------- #
 	
 class pinnObjDict(dict):
+	def __init__(self, dict1, filename=''):
+		"""
+		Initialize private variables
+		"""
+		self = dict1
+		self._filename = filename
+
+	# ------------------------------------------- #
+	
 	"""
 	Subclass of dictionary object to offer some syntatic sugar.
 	"""	
@@ -12,9 +21,9 @@ class pinnObjDict(dict):
 		"""
 		try:
 			if type(self[key]) is dict:
-				return pinnObjDict(self[key])
+				return pinnObjDict(self[key],self._filename)
 			elif type(self[key]) is list:
-				return pinnObjList.pinnObjList(self[key])
+				return pinnObjList.pinnObjList(self[key],self._filename)
 			else:
 				return self[key]
 		except:
@@ -59,10 +68,10 @@ class pinnObjDict(dict):
 				print(thisPath)
 		
 			if type(self[key]) is dict:
-				pinnObjDict(self[key]).search(searchStr, thisPath)
+				pinnObjDict(self[key],self._filename).search(searchStr, thisPath)
 				
 			elif type(self[key]) is list and len(self[key]) > 0 and type(self[key][0]) is dict:
-				pinnObjDict(self[key][0]).search(searchStr, thisPath + ' .Current')
+				pinnObjDict(self[key][0],self._filename).search(searchStr, thisPath + ' .Current')
 			
 # ------------------------------------------- #
 

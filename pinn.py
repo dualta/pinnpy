@@ -35,7 +35,7 @@ def read(pinnFile):
 	f.write(fileTxt)
 	f.close()
 	
-	return pinnObjDict.pinnObjDict(json.loads(fileTxt))
+	return pinnObjDict.pinnObjDict(json.loads(fileTxt),pinnFile)
 
 # ----------------------------------------- #
 	
@@ -45,7 +45,7 @@ def reads(fileTxt):
 	"""
 	fileTxt = pinn2Json(fileTxt)
 	
-	return pinnObjDict.pinnObjDict(json.loads(fileTxt))
+	return pinnObjDict.pinnObjDict(json.loads(fileTxt),pinnFile)
 
 # ----------------------------------------- #
 

@@ -6,16 +6,17 @@ class pinnObjList():
 	"""
 	Subclass of list object to offer some syntatic sugar.
 	"""
-	def __init__(self, inList):
+	def __init__(self, inList, filename=''):
 		self.__list = inList[:]
 		self.__curNum = 0
 		self.__listLen = len(self.__list)
-		
+		self._filename = filename
+
 	# ------------------------------------------- #
 	
 	def __getitem__(self, index):
 		if type(self.__list[index]) is dict:		
-			return pinnObjDict.pinnObjDict(self.__list[index])
+			return pinnObjDict.pinnObjDict(self.__list[index],self._filename)
 		else:
 			return self.__list[index]
 	
@@ -61,7 +62,7 @@ class pinnObjList():
 			raise StopIteration
 		else:
 			if type(self.__list[self.__curNum]) is dict:		
-				rtnVal = pinnObjDict.pinnObjDict(self.__list[self.__curNum])
+				rtnVal = pinnObjDict.pinnObjDict(self.__list[self.__curNum],self._filename)
 			else:
 				rtnVal = self.__list[self.__curNum]
 			
@@ -91,7 +92,7 @@ class pinnObjList():
 		Allow access of zeroth element by use of function First
 		"""
 		if type(self.__list[0]) is dict:		
-			return pinnObjDict.pinnObjDict(self.__list[0])
+			return pinnObjDict.pinnObjDict(self.__list[0],self._filename)
 		else:
 			return self.__list[0]
 		
@@ -105,7 +106,7 @@ class pinnObjList():
 			self.__curNum = num
 		else:
 			if type(self.__list[self.__curNum]) is dict:		
-				return pinnObjDict.pinnObjDict(self.__list[self.__curNum])
+				return pinnObjDict.pinnObjDict(self.__list[self.__curNum],self._filename)
 			else:
 				return self.__list[self.__curNum]
 		
@@ -113,7 +114,7 @@ class pinnObjList():
 	
 	def getLast(self):
 		if type(self.__list[-1]) is dict:		
-			return pinnObjDict.pinnObjDict(self.__list[0])
+			return pinnObjDict.pinnObjDict(self.__list[0],self._filename)
 		else:
 			return self.__list[-1]
 		
